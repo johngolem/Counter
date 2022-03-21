@@ -8,11 +8,19 @@ class Counter extends Component {
     state = {
         count:0,
         imageUrl:'https://picsum.photos/200',
-        tags:['tag 1','tag 2', 'tag 3']
+        tags:[]
     };
 
+    // constructor(){
+    //     super();
+    //   this.handleIncrememt =  this.handleIncrememt.bind(this )
+    // }
+
+    handleIncrememt = () => {
+        console.log("increment clicked");
+    }
     renderTags () {
-        if (this.state.tags.length === 0) return <p>There are no tags!</p>;
+        if (this.state.tags.length === 0) return <p>There are no tags!</p>;   
 
         return <ul>
                     {this.state.tags.map(tag=> <li key={tag.id}>{ tag }</li>)}
@@ -22,7 +30,9 @@ class Counter extends Component {
 
     render() { 
         return (<React.Fragment>
-            <button className='btn btn-secondary btn-sm'>Increment</button> 
+            <button className='btn btn-secondary btn-sm' onClick={this.handleIncrememt}>Increment</button>
+             <br />
+            {this.state.tags.length === 0 && "Please create a new tag!"} <br />
             {this.renderTags()}
             </React.Fragment>
     ); 
